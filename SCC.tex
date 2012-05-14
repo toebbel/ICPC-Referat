@@ -1,0 +1,128 @@
+\section{Starke Zusammenhangskomponenten}
+
+\subsection*{Starke Zusammenhangskomponenten}
+\begin{frame}{Starke Zusammenhangskomponenten}{Strongly connected components}
+	\begin{block}{Starke Zusammenhangskomponente}
+		Ein induzierter Teilgraph $G[U]$ für eine Teilmenge 
+		$U \subset V$ heißt starke Zusammenhangskomponente von $G$, 
+		falls $G[U]$ stark zusammenhängend ist und kein stark 
+		zusammenhängender induzierter Teilgraph von $G$ existiert, 
+		der $G[U]$ echt enthält.
+	\end{block}
+\end{frame}
+
+\subsection*{Worum geht es?}
+\begin{frame}{Worum geht es?}{}
+	Gegeben ist ein Graph G(V, E):
+
+	\begin{figure}
+		\begin{tikzpicture}[->,scale=1.8, auto,swap]
+			% Draw a 7,11 network
+			% First we draw the vertices
+			\foreach \pos/\name in {{(0,0)/a}, {(0,2)/b}, {(1,2)/c},
+				                    {(1,0)/d}, {(2,1)/e}, {(3,1)/f}, 
+									{(4,2)/g}, {(5,2)/h}, {(4,0)/i},
+									{(5,0)/j}}
+				\node[vertex] (\name) at \pos {$\name$};
+			% Connect vertices with edges and draw weights
+			\foreach \source/ \dest /\pos in {a/b/,b/c/,c/d/,d/a/,
+										c/e/bend left, d/e/,e/c/,
+										e/f/,
+										f/g/, f/i/,g/f/bend right,i/f/bend left,
+										g/h/, h/j/, j/i/, i/g/}
+				\path (\source) edge [\pos] node {} (\dest);
+		\end{tikzpicture}
+	\end{figure}
+
+	Frage: Gibt es Teilgraphen G'(V', E') mit $V' \subset V$ und $E' \subset E$, sodass gilt:
+	$\forall a, b \in V: \exists \text{Pfad von a nach b} \in G$
+\end{frame}
+
+\begin{frame}{Worum geht es?}{}
+	Antwort: Ja, gibt es:
+
+	\begin{figure}
+		\begin{tikzpicture}[->,scale=1.8, auto,swap]
+			% Draw a 7,11 network
+			% First we draw the vertices
+			\foreach \pos/\name in {{(0,0)/a}, {(0,2)/b}, {(1,2)/c},
+				                    {(1,0)/d}, {(2,1)/e}, {(3,1)/f}, 
+									{(4,2)/g}, {(5,2)/h}, {(4,0)/i},
+									{(5,0)/j}}
+				\node[vertex] (\name) at \pos {$\name$};
+			% Connect vertices with edges
+			\foreach \source/ \dest /\pos in {a/b/,b/c/,c/d/,d/a/,
+										c/e/bend left, d/e/,e/c/,
+										e/f/,
+										f/g/, f/i/,g/f/bend right,i/f/bend left,
+										g/h/, h/j/, j/i/, i/g/}
+				\path (\source) edge [\pos] node {} (\dest);
+			\pause \path<+-> node[selected vertex] at (a) {$a$};
+			\begin{pgfonlayer}{background} \path<+->[selected edge] (a.center) -- (b.center); \end{pgfonlayer}
+			\path<+-> node[selected vertex] at (b) {$b$};
+			\begin{pgfonlayer}{background} \path<+->[selected edge] (b.center) -- (c.center); \end{pgfonlayer}
+			\path<+-> node[selected vertex] at (c) {$c$};
+			\begin{pgfonlayer}{background} \path<+->[selected edge] (c.center) -- (d.center); \end{pgfonlayer}
+			\path<+-> node[selected vertex] at (d) {$d$};
+			\begin{pgfonlayer}{background} \path<+->[selected edge] (d.center) -- (a.center); \end{pgfonlayer}
+		\end{tikzpicture}
+	\end{figure}
+\end{frame}
+
+\subsection*{Brücke}
+\begin{frame}{Brücke}{Bridge}
+	\begin{figure}
+		\begin{tikzpicture}[->,scale=1.8, auto,swap]
+			% Draw a 7,11 network
+			% First we draw the vertices
+			\foreach \pos/\name in {{(0,0)/a}, {(0,2)/b}, {(1,2)/c},
+				                    {(1,0)/d}, {(2,1)/e}, {(3,1)/f}, 
+									{(4,2)/g}, {(5,2)/h}, {(4,0)/i},
+									{(5,0)/j}}
+				\node[vertex] (\name) at \pos {$\name$};
+			% Connect vertices with edges
+			\foreach \source/ \dest /\pos in {a/b/,b/c/,c/d/,d/a/,
+										c/e/bend left, d/e/,e/c/,
+										e/f/,
+										f/g/, f/i/,g/f/bend right,i/f/bend left,
+										g/h/, h/j/, j/i/, i/g/}
+				\path (\source) edge [\pos] node {} (\dest);
+			\begin{pgfonlayer}{background} \path<+->[selected edge] (e.center) -- (f.center); \end{pgfonlayer}
+		\end{tikzpicture}
+	\end{figure}
+\end{frame}
+
+\subsection*{Artikulationspunkt}
+\begin{frame}{Artikulationspunkt}{Articulation vertex or cut vertices}
+	Auch "Gelenkpunkt" genannt
+\end{frame}
+
+\subsection*{Zweifachverbundener Graph}
+\begin{frame}{Zweifachverbundener Graph}{Biconnected graph}
+	\begin{figure}
+		\begin{tikzpicture}[->,scale=1.8, auto,swap]
+			% Draw a 7,11 network
+			% First we draw the vertices
+			\foreach \pos/\name in {{(0,0)/a}, {(0,2)/b}, {(1,2)/c},
+				                    {(1,0)/d}, {(2,1)/e}, {(3,1)/f}, 
+									{(4,2)/g}, {(5,2)/h}, {(4,0)/i},
+									{(5,0)/j}}
+				\node[vertex] (\name) at \pos {$\name$};
+			% Connect vertices with edges
+			\foreach \source/ \dest /\pos in {a/b/,b/c/,c/d/,d/a/,
+										c/e/bend left, d/e/,e/c/,
+										e/f/,
+										f/g/, f/i/,g/f/bend right,i/f/bend left,
+										g/h/, h/j/, j/i/, i/g/}
+				\path (\source) edge [\pos] node {} (\dest);
+			\path<+-> node[selected vertex] at (e) {$d$};
+		\end{tikzpicture}
+	\end{figure}
+\end{frame}
+
+\subsection*{Tiefensuche}
+\begin{frame}{Tiefensuche}{Tiefensuche}
+	\begin{block}{Tiefensuche}
+		...
+	\end{block}
+\end{frame}

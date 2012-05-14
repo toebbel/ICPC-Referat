@@ -1,0 +1,43 @@
+\documentclass[hyperref={pdfpagelabels=false}]{beamer}
+\usepackage{lmodern}
+
+\usepackage[utf8]{inputenc} % this is needed for german umlauts
+\usepackage[ngerman]{babel} % this is needed for german umlauts
+\usepackage[T1]{fontenc}    % this is needed for correct output of umlauts in pdf
+
+\usepackage{verbatim}
+\usepackage{tikz}
+\usetikzlibrary{arrows,shapes}
+
+% Define some styles for graphs
+\tikzstyle{vertex}=[circle,fill=black!25,minimum size=20pt,inner sep=0pt]
+\tikzstyle{selected vertex} = [vertex, fill=red!24]
+\tikzstyle{edge} = [draw,thick,-]
+\tikzstyle{weight} = [font=\small]
+\tikzstyle{selected edge} = [draw,line width=5pt,-,red!50]
+\tikzstyle{ignored edge} = [draw,line width=5pt,-,black!20]
+
+\usetheme{Frankfurt} % see http://deic.uab.es/~iblanes/beamer_gallery/index_by_theme.html
+\usefonttheme{professionalfonts}
+\beamertemplatenavigationsymbolsempty
+
+\begin{document}
+\title{Graphentheorie II}   
+\author{Martin Thoma, Tobias Sturm} 
+\date{\today} 
+\subject{Graphentheorie-Referat fur ICPC}
+
+\frame{\titlepage} 
+
+\frame{
+	\frametitle{Inhaltsverzeichnis}
+	\tableofcontents[section]
+}
+
+\input{MinimaleSpannbaume}       % Minimale Spannbäume
+\input{SCC}       % Starke zusammenhangskomponenten
+\input{GraphColoring}  % Färbung von Graphen
+\input{Kreise}  % Färbung von Graphen
+
+\end{document}
+
